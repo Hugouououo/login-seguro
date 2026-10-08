@@ -1,21 +1,29 @@
 import { Component } from '@angular/core';
-import { FormsModule } from '@angular/forms';  // ← ADICIONE ISTO
-
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { NgClass } from '../../../../node_modules/@angular/common/types/_common_module-chunk';
 
 @Component({
   selector: 'app-login-component',
-  imports: [FormsModule],
+  standalone: true,
+  imports: [ReactiveFormsModule, NgClass],
   templateUrl: './login-component.html',
   styleUrl: './login-component.scss',
 })
+
 export class LoginComponent {
 
-  email: string =''
-  senha: string =''
+  loginForm!: FormGroup;
 
-  login(){
-    console.log(`Email e senha logados: ${this.email} / ${this.senha}`)
+  constructor(private readonly fb: FormBuilder) {
+    this.loginForm = this.fb.group({
+    email: ['', [Validators.required, Validators.email]],
+    senha: ['', Validators.required],
+    });
+  }
 
-    //...
+  login(): void {
+    if(this.loginForm.valid){
+      console.log(this.loginForm.value)
+    }
   }
 }
