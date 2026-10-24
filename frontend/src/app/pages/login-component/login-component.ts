@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { NgClass } from '../../../../node_modules/@angular/common/types/_common_module-chunk';
+import { Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-login-component',
   standalone: true,
-  imports: [ReactiveFormsModule, NgClass],
+  imports: [ReactiveFormsModule, RouterLink],
   templateUrl: './login-component.html',
   styleUrl: './login-component.scss',
 })
@@ -14,7 +14,10 @@ export class LoginComponent {
 
   loginForm!: FormGroup;
 
-  constructor(private readonly fb: FormBuilder) {
+  constructor(
+    private readonly fb: FormBuilder,
+    private readonly router: Router,
+  ) {
     this.loginForm = this.fb.group({
     email: ['', [Validators.required, Validators.email]],
     senha: ['', Validators.required],
@@ -22,8 +25,8 @@ export class LoginComponent {
   }
 
   login(): void {
-    if(this.loginForm.valid){
-      console.log(this.loginForm.value)
+    if (this.loginForm.valid) {
+      this.router.navigate(['/logado']);
     }
   }
 }

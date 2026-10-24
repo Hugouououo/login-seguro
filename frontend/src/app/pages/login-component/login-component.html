@@ -21,14 +21,14 @@
     </div>
     <button
         [disabled]="loginForm.invalid" 
-        [ngClass]="loginForm.valid ? 'botao-entrar' : 'botao-salvar'"
         type="submit">
         Entrar
-    </button>
+    </button>        
+    <!-- [ngClass]="loginForm.valid ? 'botao-entrar' : 'botao-salvar'" -->
 </form>
 
 <div class="links">
-    <!-- <a href="">Esqueci minha senha.</a>
-    <a href="">Criar minha conta.</a> -->
+    <a>Esqueci minha senha.</a>
+    <a routerLink="/criar-login">Criar minha conta.</a>
 </div>
 
