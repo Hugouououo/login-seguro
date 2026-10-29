@@ -1,1 +1,42 @@
-<p>criar-login-component works!</p>
+<h1>Criar sua conta:</h1>
+
+<form [formGroup]="loginForm" (ngSubmit)="criar()">
+    <div class="campos_input" id="campos_input_email">
+        <label for="input__email">Digite seu email</label>
+        <input
+            type="text"
+            id="input__email"
+            formControlName="email" 
+            placeholder="email@email.com"
+            required>
+    </div>
+    <div class="campos_input" id="campos_input_senha">
+        <label for="input__senha">Digite sua senha</label>
+        <input
+            type="password"
+            id="input__senha"
+            formControlName="senha"
+            placeholder="********"
+            required>
+    </div>
+    <div class="campos_input" id="campos_input_senha">
+        <label for="input__senha">Confirme sua senha</label>
+        <input
+            type="password"
+            id="input__senha"
+            formControlName="senha2"
+            placeholder="********"
+            required>
+    </div>
+    <button
+        [disabled]="loginForm.invalid" 
+        type="submit">
+        Criar
+    </button>        
+    <!-- [ngClass]="loginForm.valid ? 'botao-entrar' : 'botao-salvar'" -->
+</form>
+
+<div class="links">
+    <a routerLink="/login">Entrar com login existente</a>
+</div>
+
